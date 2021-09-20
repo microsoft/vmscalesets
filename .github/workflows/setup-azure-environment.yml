@@ -41,11 +41,12 @@ jobs:
           azPSVersion: latest
 
       - name: Deploy Bicep Template
-        uses: Azure/arm-deploy@v1
+        uses: Azure/arm-deploy@1.0.4
         with:
           resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
           # Specify the path or URL to the Azure Resource Manager template.
           template: ./automation/main.bicep
+          deploymentName: github_${{ github.run_number }}
           # Supply deployment parameter values.
           parameters: 
             scaleSetNamePrefix=${{ env.SCALESET_NAME_PREFIX }} 
